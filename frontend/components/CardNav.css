@@ -1,0 +1,220 @@
+.card-nav-container {
+  width: 100%;
+  position: relative;
+  z-index: 50;
+}
+
+.card-nav {
+  width: 100%;
+  background-color: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  /* Added max-height transition for smooth expand/collapse */
+  max-height: 60px;
+  overflow: hidden;
+}
+
+.card-nav.open {
+  /* Increased max-height when expanded to show all content */
+  max-height: 500px;
+  overflow: visible;
+}
+
+.card-nav-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  height: 60px;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.hamburger-menu {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.hamburger-menu:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.hamburger-line {
+  width: 24px;
+  height: 2px;
+  background-color: currentColor;
+  border-radius: 1px;
+  transition: all 0.3s ease;
+}
+
+.hamburger-menu.open .hamburger-line:first-child {
+  transform: rotate(45deg) translateY(10px);
+}
+
+.hamburger-menu.open .hamburger-line:last-child {
+  transform: rotate(-45deg) translateY(-10px);
+}
+
+.logo-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+}
+
+.logo-text {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffc700;
+}
+
+.card-nav-cta-button {
+  padding: 10px 24px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.card-nav-cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-nav-content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding: 16px 24px;
+  /* Changed from absolute positioning to static for proper flow */
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.card-nav.open .card-nav-content {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.nav-card {
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: all 0.2s ease;
+  /* Added animation for cards appearing */
+  animation: slideUp 0.3s ease forwards;
+}
+
+.card-nav:not(.open) .nav-card {
+  animation: none;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nav-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.nav-card-label {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.nav-card-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.nav-card-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  opacity: 0.8;
+}
+
+.nav-card-link:hover {
+  opacity: 1;
+  gap: 12px;
+}
+
+.nav-card-link-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .hamburger-menu {
+    display: flex;
+  }
+
+  .card-nav-top {
+    padding: 12px 16px;
+  }
+
+  .card-nav.open {
+    /* Adjusted max-height for mobile */
+    max-height: 600px;
+  }
+
+  .card-nav-content {
+    grid-template-columns: 1fr;
+    padding: 12px 16px;
+  }
+
+  .logo {
+    height: 28px;
+  }
+
+  .card-nav-cta-button {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+
+  .nav-card {
+    padding: 16px;
+  }
+
+  .nav-card-label {
+    font-size: 14px;
+  }
+
+  .nav-card-link {
+    font-size: 13px;
+  }
+}
